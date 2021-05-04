@@ -1,40 +1,44 @@
 
-const post1 = {id: 1, 
-    title: 'Post Title 1', 
-    body: 'Here is the body'}
-
-const post2 = {id: 2, 
-    title: 'Post Title 2', 
-    body: 'Here is the body for the second'}
-
-const post3 = {id: 3, 
-        title: 'Post Title 3', 
-        body: 'Here is the body for the third'}
-    
-      
-const allPosts = [post1, post2, post3]
 module.exports= {
 
-    posts: function(req,res) {
-        
-        res.send(allPosts)
+    posts: async function(req,res) {
+
+        try{
+            const posts = await Post.find()
+        res.send(posts)
+        } catch(err) {
+            res.serverError(err.toString())
+        }
+
+        console.log('Finished creating post object')
+        return res.end()
+       
     },
 
     create: function(req,res) {
 
         const title = req.param('title')
-        const body= req.param('body')
-        console.log(title + " " + body)
+        const postBody =  req.param('postBody')
 
-        SVGPathSegList.log.debug(title + " " + body)
+        console.log('My Title: ' + title)
 
-        const newPost = {
-            id: 4, 
-    title: title, 
-    body: body }
-        allPosts.push(newPost)
+          Post.create({title: title, body: postBody}).exec(function(err) {
 
-        res.end()
+            if (err) {
+
+                return res.serverError(err.toString())
+
+            }
+            console.log('Finished creating object')
+            return res.end()
+        })
+    //     const newPost = {
+    //         id: 4, 
+    // title: title, 
+    // body: postBody}
+    //     allPosts.push(newPost)
+
+        //res.end()
     },
 
     findById: function(req, res) {
@@ -55,6 +59,15 @@ module.exports= {
 
         res.send(postId)
 
+    },
+
+    delete: async function(req, res) {
+
+        const postId = req.param(':postId')
+
+        await Post.destroy({id: postId})
+
+        res.send('Trying to delete post now')
     }
 
 }
