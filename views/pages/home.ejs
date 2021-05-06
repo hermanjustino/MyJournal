@@ -1,0 +1,31 @@
+<html>
+    <style>
+        .post-container{
+            background-color: white; 
+            margin: 16px;
+            padding: 18px;
+            border-radius: 5px;
+            border: solid 1px black
+        }
+    </style>
+    <body style="background-color: beige;">
+        This will show a list of our posts
+
+        <div>
+
+            <!-- Iterate through all Posts from Home-->
+
+            <% allPosts.forEach(p => { %>
+
+                <div class="post-container">
+                <div><%= p.title %></div>
+            <div><%= p.body %></div>
+
+            </div>
+            <% }) %>
+            
+
+        </div>
+
+    </body>
+</html>
