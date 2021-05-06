@@ -30,6 +30,9 @@ module.exports= {
 
             }
             console.log('Finished creating object')
+
+            res.redirect('/home')
+
             return res.end()
         })
     //     const newPost = {
@@ -63,11 +66,10 @@ module.exports= {
 
     delete: async function(req, res) {
 
-        const postId = req.param(':postId')
+        const postId = req.param('postId')
 
         await Post.destroy({id: postId})
 
-        res.send('Trying to delete post now')
+        res.send('Finished deleting post now')
     }
-
 }
