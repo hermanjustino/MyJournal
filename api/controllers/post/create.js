@@ -1,4 +1,4 @@
-nodemonmodule.exports = {
+module.exports = {
 
 
   friendlyName: 'Create',
