@@ -15,34 +15,34 @@ module.exports= {
        
     },
 
-    create: function(req,res) {
+    // create: function(req,res) {
 
-        const title = req.param('title')
-        const postBody =  req.param('postBody')
+    //     const title = req.param('title')
+    //     const postBody =  req.param('postBody')
 
-        console.log('My Title: ' + title)
+    //     console.log('My Title: ' + title)
 
-          Post.create({title: title, body: postBody}).exec(function(err) {
+    //       Post.create({title: title, body: postBody}).exec(function(err) {
 
-            if (err) {
+    //         if (err) {
 
-                return res.serverError(err.toString())
+    //             return res.serverError(err.toString())
 
-            }
-            console.log('Finished creating object')
+    //         }
+    //         console.log('Finished creating object')
 
-            res.redirect('/home')
+    //         res.redirect('/home')
 
-            return res.end()
-        })
-    //     const newPost = {
-    //         id: 4, 
-    // title: title, 
-    // body: postBody}
-    //     allPosts.push(newPost)
+    //         return res.end()
+    //     })
+    // //     const newPost = {
+    // //         id: 4, 
+    // // title: title, 
+    // // body: postBody}
+    // //     allPosts.push(newPost)
 
-        //res.end()
-    },
+    //     //res.end()
+    // },
 
     findById: function(req, res) {
 
